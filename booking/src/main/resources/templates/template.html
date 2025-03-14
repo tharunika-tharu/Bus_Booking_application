@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Bus Ticket</title>
+	<style>
+		body {
+            background: rgba(0, 0, 0, 0.1); /* Light grey background */
+            font-family: Arial, sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.8); /* Glass effect background */
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px); /* Frosted glass effect */
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .row {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+        }
+
+        .textColor {
+            color: #4a90e2; /* Blue color for text */
+            font-size: 1.1em;
+        }
+
+        h4 {
+            text-align: center;
+            color: #555;
+            margin-top: 20px;
+        }
+	</style>
+</head>
+
+<body>
+<h2>Bus Ticket</h2>
+<div class="container">
+	<div class="row">
+		<div class="col-md-6">
+			<label>Date of Departure:</label>
+			<div class="textColor"><p th:text="${date}"></p></div>
+		</div>
+		<div class="col-md-6">
+			<label>Name of Primary Passenger:</label>
+			<div class="textColor"><p th:text="${name}"></p></div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<label>Ticket No:</label>
+			<div class="textColor">#123456</div>
+		</div>
+		<div class="col-md-6">
+			<label>No. of Passengers Traveling:</label>
+			<div class="textColor"><p th:text="${noOfPersons}"></p></div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<label>Departure:</label>
+			<div class="textColor"><p th:text="${from}"></p></div>
+		</div>
+		<div class="col-md-6">
+			<label>Destination:</label>
+			<div class="textColor"><p th:text="${to}"></p></div>
+		</div>
+	</div>
+</div>
+<h4>Note: Along with the ticket, bring the Primary Passenger's ID Proof.</h4>
+</body>
+
+</html>

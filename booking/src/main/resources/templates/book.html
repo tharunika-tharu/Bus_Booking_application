@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Bus Ticket Booking System</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style>
+        body {
+           background: #FF7276;
+           font-family: 'Arial', sans-serif;
+       }
+        .navbar {
+            background: white;
+            text-align:center;
+            color: #FF7276;
+            padding: 15px;
+        }
+        .container {
+            margin-top: 150px;
+        }
+        .nav-container{
+           margin-top:8px
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="nav-container">
+        <div class="navbar-header">
+            <h2>Booking Page</h2>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="row">
+        <div th:if="${param.success}" class="alert alert-info text-center">
+            Your booking is done! Go to My Bookings section to check your booking by going to the Dashboard.
+        </div>
+
+        <h2 class="text-center">Booking</h2>
+
+        <form th:action="@{/dashboard/booking}" method="post" th:object="${record}">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="from">From</label>
+                        <input id="from" class="form-control" th:field="*{fromDestination}" required readonly autofocus>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="to">To</label>
+                        <input id="to" class="form-control" th:field="*{toDestination}" required readonly autofocus>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="filterDate">Date</label>
+                        <input type="date" id="filterDate" class="form-control" th:field="*{filterDate}" required readonly>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="price">Price</label>
+                        <input id="price" class="form-control" th:field="*{price}" required readonly>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="noOfPersons">No of Persons</label>
+                        <input id="noOfPersons" class="form-control" th:field="*{noOfPersons}" required onchange="updateField();">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="totalCalculated">Total Amount</label>
+                        <input id="totalCalculated" class="form-control" th:field="*{totalCalculated}" required readonly>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <button type="submit" class="btn btn-primary">Pay</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    function updateField() {
+        var price = document.getElementById("price").value;
+        var totalPassenger = document.getElementById("noOfPersons").value;
+        var totalValue = price * totalPassenger;
+        document.getElementById("totalCalculated").value = totalValue;
+    }
+</script>
+</body>
+</html>
